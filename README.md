@@ -1,0 +1,2 @@
+pocketwise is a personal finance management application designed to help users record, organize and analyze their financial activities.
+It provides a centralized platform for managing income, expenses and monthly budgets while generating meaningful financial insights through database queries and visualizations.
