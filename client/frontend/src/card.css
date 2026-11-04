@@ -1,0 +1,23 @@
+.card{
+    height: 100px;
+    width: 200px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #727272;
+    border-radius: 8px;
+}
+
+#card-value {
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+#card-title {
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+}

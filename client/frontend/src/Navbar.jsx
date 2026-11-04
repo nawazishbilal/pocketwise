@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Navbar.css';
 
 export default function Navbar() {
 
@@ -12,25 +13,26 @@ export default function Navbar() {
                     <p id="brand-tagline">YOUR FINANCE TRACKER</p>
                 </div>
 
-                <button id="close-nav" onClick={() => setIsVisible(!isVisible)} label={isVisible ? "Hide menu" : "Show menu"}>{isVisible ? '✕ Close' : '☰ Menu'}</button>
+                {/* <button id="close-nav" onClick={() => setIsVisible(!isVisible)} label={isVisible ? "Hide menu" : "Show menu"}>{isVisible ? '✕ Close' : '☰ Menu'}</button> */}
 
                 <p id="nav-heading">WORKSPACE</p>
 
                 <div className="nav-routes">
-                    <p id="dashboard" style={{backgroundColor:'#fce8e4'}}>Dashboard</p>
+                    <p id="dashboard" style={{ backgroundColor: '#fce8e4' }}>Dashboard</p>
                     <p id="transactions">Transactions</p>
                     <p id="budgets">Budgets</p>
                     <p id="goals">Savings Goals</p>
                     <p id="insights">Insights</p>
                 </div>
-
-                <div className="nav-account">
-                    <div className="user-icon">
-                        <p>NB</p>
-                    </div>
-                    <div className="user-details">
-                        <p id="user-name">Nawazish Bilal</p>
-                        <p id="user-email">nawazish@example.com</p>
+                <div className='account-box'>
+                    <div className="nav-account">
+                        <div className="user-icon">
+                            <p>NB</p>
+                        </div>
+                        <div className="user-details">
+                            <p id="user-name">Nawazish Bilal</p>
+                            <p id="user-email">nawazish@example.com</p>
+                        </div>
                     </div>
                 </div>
             </div>
