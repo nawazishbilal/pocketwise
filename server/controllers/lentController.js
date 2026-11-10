@@ -26,7 +26,7 @@ export const createLent = async (req, res) => {
 
         res.status(201).json({
             message: 'Lending added successfully',
-            transaction
+            lent
         });
 
     } catch (error) {
