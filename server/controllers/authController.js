@@ -1,5 +1,5 @@
-import User from "../models/User";
-import bcrypt from "bcryptjs"
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken"
 
 const generateToken = (userId) => {
@@ -41,7 +41,7 @@ export const registerUser = async (req, res) => {
         res.status(201).json({
             message: 'Registration successful',
             token,
-            user: {
+            user_details: {
                 id: user._id,
                 name: user.name,
                 email: user.email

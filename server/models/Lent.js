@@ -34,4 +34,4 @@ const lentSchema = new mongoose.Schema(
 
 lentSchema.index({ userID: 1, date: -1 });
 
-export default Lent = mongoose.model("Lent", lentSchema);
+export default mongoose.model("Lent", lentSchema);

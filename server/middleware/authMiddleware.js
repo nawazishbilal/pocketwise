@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
-import User from "../models/User"
+import User from "../models/User.js"
 
-export default protect = async (req, res, next) => {
+const protect = async (req, res, next) => {
     try {
         let token;
 
@@ -35,3 +35,5 @@ export default protect = async (req, res, next) => {
         });
     }
 }
+
+export default protect;

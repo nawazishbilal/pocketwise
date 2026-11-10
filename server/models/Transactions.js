@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema(
     {
-        userID: {
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
@@ -49,4 +49,4 @@ const transactionSchema = new mongoose.Schema(
 
 transactionSchema.index({ userId: 1, date: -1 });
 
-export default Transaction = mongoose.model('Transaction', transactionSchema);
+export default mongoose.model('Transaction', transactionSchema);

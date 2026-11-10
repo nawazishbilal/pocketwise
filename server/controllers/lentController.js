@@ -1,4 +1,4 @@
-import Lent from "../models/Lent"
+import Lent from "../models/Lent.js"
 
 export const createLent = async (req, res) => {
     try {
