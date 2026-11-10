@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         min: 6,
         max: 8,
-        required: true
+        required: true,
+        select: false
     }
 },
     {
