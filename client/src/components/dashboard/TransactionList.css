@@ -1,0 +1,154 @@
+/* Card Wrapper */
+.transaction-card {
+    background-color: #1F2937;
+    border: 1px solid #374151; /* gray-700 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem; /* p-5 */
+    color: #ffffff;
+}
+
+/* Header & Title */
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem; /* mb-5 */
+}
+
+.transaction-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    margin: 0;
+}
+
+.transaction-subtitle {
+    font-size: 0.75rem; /* text-xs */
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* Empty State */
+.transaction-empty {
+    text-align: center;
+    padding: 2.5rem 0; /* py-10 */
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* Table Responsive Wrapper */
+.transaction-table-wrapper {
+    overflow-x: auto;
+}
+
+/* Table Layout */
+.transaction-table {
+    width: 100%;
+    font-size: 0.875rem; /* text-sm */
+    text-align: left;
+    border-collapse: collapse;
+}
+
+/* Table Header */
+.transaction-thead {
+    color: #6b7280; /* text-gray-500 */
+    border-bottom: 1px solid #374151;
+}
+
+.transaction-thead th {
+    padding-bottom: 0.75rem; /* pb-3 */
+    font-weight: 500; /* font-medium */
+}
+
+/* Table Rows & Cells */
+.transaction-row {
+    border-bottom: 1px solid rgba(55, 65, 81, 0.6);
+}
+
+.transaction-row:last-child {
+    border-bottom: none;
+}
+
+.transaction-cell {
+    padding: 1rem 0; /* py-4 */
+}
+
+/* Description & Icons */
+.transaction-desc-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* gap-3 */
+}
+
+.transaction-icon-box {
+    padding: 0.5rem; /* p-2 */
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.income-bg {
+    background-color: rgba(16, 185, 129, 0.1); /* emerald-500/10 */
+}
+
+.expense-bg {
+    background-color: rgba(239, 68, 68, 0.1); /* red-500/10 */
+}
+
+.income-icon {
+    color: #34d399; /* emerald-400 */
+}
+
+.expense-icon {
+    color: #f87171; /* red-400 */
+}
+
+.transaction-desc-text {
+    color: #e5e7eb; /* text-gray-200 */
+}
+
+/* Column Text Styling */
+.category-text {
+    color: #9ca3af; /* text-gray-400 */
+}
+
+.date-text {
+    color: #9ca3af; /* text-gray-400 */
+    white-space: nowrap;
+}
+
+.amount-cell {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.income-text {
+    color: #34d399; /* emerald-400 */
+}
+
+.expense-text {
+    color: #f87171; /* red-400 */
+}
+
+/* Actions Buttons */
+.transaction-actions {
+    display: flex;
+    gap: 0.75rem; /* gap-3 */
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #9ca3af; /* text-gray-400 */
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.edit-btn:hover {
+    color: #34d399; /* hover:text-emerald-400 */
+}
+
+.delete-btn:hover {
+    color: #f87171; /* hover:text-red-400 */
+}

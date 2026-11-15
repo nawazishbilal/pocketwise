@@ -1,0 +1,62 @@
+/* Card Container */
+.stat-card {
+    background-color: #1F2937;
+    border: 1px solid #374151; /* gray-700 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem; /* p-5 */
+    color: #ffffff;
+}
+
+/* Header Layout */
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-title {
+    color: #9CA3AF; /* text-gray-400 */
+    font-size: 0.875rem; /* text-sm */
+    margin: 0;
+}
+
+/* Icon Container Base */
+.stat-icon-container {
+    padding: 0.5rem; /* p-2 */
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Color Variant Classes (matching your Dashboard props) */
+.stats-blue {
+    background-color: rgba(59, 130, 246, 0.1); /* blue-500/10 */
+    color: #60A5FA; /* blue-400 */
+}
+
+.stats-emerald {
+    background-color: rgba(16, 185, 129, 0.1); /* emerald-500/10 */
+    color: #34D399; /* emerald-400 */
+}
+
+.stats-red {
+    background-color: rgba(239, 68, 68, 0.1); /* red-500/10 */
+    color: #F87171; /* red-400 */
+}
+
+/* Amount Heading */
+.stat-amount {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-top: 1.25rem; /* mt-5 */
+    margin-bottom: 0;
+}
+
+/* Subtitle */
+.stat-subtitle {
+    color: #6B7280; /* text-gray-500 */
+    font-size: 0.75rem; /* text-xs */
+    margin-top: 0.5rem; /* mt-2 */
+    margin-bottom: 0;
+}

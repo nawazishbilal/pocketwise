@@ -1,0 +1,30 @@
+/* Card Container */
+.category-chart-card {
+    background-color: #1F2937;
+    border: 1px solid #374151; /* gray-700 equivalent */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem; /* p-5 */
+    color: #ffffff;
+}
+
+/* Heading */
+.category-chart-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 1rem; /* mb-4 */
+    margin-top: 0;
+}
+
+/* Empty State Box */
+.category-chart-empty {
+    height: 16rem; /* h-64 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* Recharts Wrapper Box */
+.category-chart-container {
+    height: 16rem; /* h-64 */
+}

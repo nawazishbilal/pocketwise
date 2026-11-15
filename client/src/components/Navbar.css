@@ -31,13 +31,12 @@ body {
     color: #A53D36;
 }
 
-.nav-account{
+.nav-account {
     display: flex;
     align-items: center;
+    justify-content:space-between;
     gap: 10px;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     color: #fff;
 }
 
@@ -46,7 +45,7 @@ body {
     padding-left: 20px;
 }
 
-#brand-name{
+#brand-name {
     margin-bottom: 0;
 }
 
@@ -65,7 +64,7 @@ body {
     padding-left: 20px;
 }
 
-.nav-routes #dashboard{
+.nav-routes #dashboard {
     margin-top: 8px;
 }
 
@@ -98,20 +97,20 @@ body {
     bottom: 0;
 }
 
-.nav-account *{
+.nav-account * {
     margin: 0;
 }
 
-.user-details > #user-email {
+.user-details>#user-email {
     font-size: 0.7em;
     margin-top: 0;
 }
 
-.user-details > #user-name {
+.user-details>#user-name {
     margin-bottom: 0;
 }
 
-.navbar.show  > #close-nav {
+.navbar.show>#close-nav {
     position: absolute;
     top: 10px;
     left: 160px;
@@ -119,7 +118,7 @@ body {
     background-color: #fff;
 }
 
-.navbar.hide > #close-nav {
+.navbar.hide>#close-nav {
     position: absolute;
     top: 10px;
     left: 100%;
@@ -129,4 +128,17 @@ body {
 
 #close-nav:hover {
     cursor: pointer;
+}
+
+#logout-btn {
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    text-align: left;
 }
