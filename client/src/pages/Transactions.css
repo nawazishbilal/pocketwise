@@ -1,0 +1,216 @@
+/* Page Header */
+.transactions-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.transactions-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    /* color: #ffffff; */
+    margin: 0;
+}
+
+.transactions-subtitle {
+    color: #9ca3af; /* text-gray-400 */
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+/* Primary Add Button */
+.transactions-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #A53D36; /* emerald-500 */
+    color: #fff; /* gray-950 */
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.transactions-add-btn:hover {
+    background-color: #E5B5AF;
+    color: #A53D36;
+}
+
+/* Filter Card */
+.transactions-filters-card {
+    background-color: #fff;
+    border: 1px solid #374151; /* gray-700 */
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem; /* p-5 */
+    margin-bottom: 1.5rem; /* mb-6 */
+    color: #A53D36;
+}
+
+.transactions-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: end;
+}
+
+/* Search Input with Icon */
+.transactions-search-wrapper {
+    position: relative;
+}
+
+.transactions-search-icon {
+    position: absolute;
+    left: 0.75rem; /* left-3 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280; /* text-gray-500 */
+    pointer-events: none;
+}
+
+.transactions-search-input {
+    width: 100%;
+    background-color: #fff; /* gray-800 */
+    border: 1px solid #374151; /* gray-700 */
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* py-3 pl-10 pr-3 */
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.transactions-search-input:focus {
+    border-color: #A53D36; /* focus:border-emerald-400 */
+}
+
+/* Selects & Date Inputs */
+.transactions-select,
+.transactions-date-input {
+    width: 100%;
+    background-color: #fff; /* gray-800 */
+    border: 1px solid #374151; /* gray-700 */
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.transactions-select:focus,
+.transactions-date-input:focus {
+    border-color: #A53D36;
+}
+
+.transactions-date-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.transactions-date-label {
+    display: block;
+    font-size: 0.75rem; /* text-xs */
+    color: #9ca3af; /* text-gray-400 */
+    margin-bottom: 0.5rem;
+}
+
+/* Reset Filters Button */
+.transactions-reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #d1d5db; /* text-gray-300 */
+    background-color: #374151; /* bg-gray-700 */
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+}
+
+.transactions-reset-btn:hover {
+    background-color: #4b5563; /* hover:bg-gray-600 */
+}
+
+/* Results Bar & States */
+.transactions-results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.transactions-count {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.transactions-error {
+    color: #f87171; /* text-red-400 */
+    margin-bottom: 1rem;
+}
+
+.transactions-loading {
+    text-align: center;
+    padding: 3rem 0; /* py-12 */
+    color: #9ca3af;
+}
+
+/* Pagination Controls */
+.transactions-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem; /* mt-6 */
+}
+
+.pagination-btn {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    background-color: #374151; /* bg-gray-700 */
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #4b5563;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    color: #d1d5db; /* text-gray-300 */
+    font-size: 0.875rem;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 640px) {
+    .transactions-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .transactions-filters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .transactions-filters-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
