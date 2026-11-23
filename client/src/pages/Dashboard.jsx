@@ -187,7 +187,7 @@ export default function Dashboard() {
                         Dashboard
                     </h1>
                     <p className="dashboard-subtitle">
-                        Welcome back, {user?.name}
+                        Welcome back, {user?.name}!
                     </p>
                 </div>
 

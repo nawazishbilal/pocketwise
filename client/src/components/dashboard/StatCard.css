@@ -1,10 +1,10 @@
 /* Card Container */
 .stat-card {
-    background-color: #1F2937;
+    background-color: #fff;
     border: 1px solid #374151; /* gray-700 */
     border-radius: 0.75rem; /* rounded-xl */
     padding: 1.25rem; /* p-5 */
-    color: #ffffff;
+    color: #A53D36;
 }
 
 /* Header Layout */

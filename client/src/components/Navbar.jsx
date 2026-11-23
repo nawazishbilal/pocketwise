@@ -38,13 +38,18 @@ export default function Navbar() {
 
                 <p id="nav-heading">WORKSPACE</p>
 
-                <div className="nav-routes">
-                    <p id="dashboard" style={{ backgroundColor: '#fce8e4' }}>Dashboard</p>
-                    <p id="transactions">Transactions</p>
-                    <p id="budgets">Budgets</p>
-                    <p id="goals">Savings Goals</p>
-                    <p id="insights">Insights</p>
-                </div>
+                <nav className="nav-routes">
+                    {links.map(({ name, path, icon: Icon }) => (
+                        <NavLink
+                            key={name} to={path} className={({ isActive }) =>
+                                isActive ? 'nav-item active' : 'nav-item'
+                            }
+                        >
+                            <Icon size={19} />
+                            <span>{name}</span>
+                        </NavLink>
+                    ))}
+                </nav>
 
                 <div className='account-box'>
                     <div className="nav-account">

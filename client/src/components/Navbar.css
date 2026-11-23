@@ -1,10 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Inter, Montserrat, sans-serif;
     background-color: #f5f5f5;
 }
 
@@ -60,33 +57,35 @@ body {
     color: #727272;
     font-size: 0.8em;
     margin-top: 50px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     padding-left: 20px;
-}
-
-.nav-routes #dashboard {
-    margin-top: 8px;
 }
 
 .nav-routes {
-    overflow-y: auto;
-    margin-bottom: 73px;
-    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.nav-routes * {
-    padding: 10px;
-    max-width: 75%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-radius: 9px;
-    padding-left: 20px;
-    padding-right: 0;
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.75rem;
+    /* border-radius: 0.5rem;*/
+    color: #6b7280;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.nav-routes *:hover {
-    cursor: pointer;
+/* .nav-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+} */
+
+.nav-item.active {
+    background-color: #A53D36;
+    color: #ffffff; /* emerald-400 */
 }
 
 .account-box {

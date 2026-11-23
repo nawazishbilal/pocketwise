@@ -8,6 +8,8 @@ import Budgets from './pages/Budgets';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
+import "./index.css"
+
 function App() {
   return (
     <Routes>

@@ -1,21 +1,21 @@
 /* Card Container */
 .monthly-chart-card {
-    background-color: #1F2937;
-    border: 1px solid #374151; /* gray-700 */
-    border-radius: 0.75rem; /* rounded-xl */
-    padding: 1.25rem; /* p-5 */
-    color: #ffffff;
+    background-color: #fff;
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    color: #A53D36;
 }
 
 /* Heading */
 .monthly-chart-title {
-    font-size: 1.125rem; /* text-lg */
-    font-weight: 600; /* font-semibold */
-    margin-bottom: 1.5rem; /* mb-6 */
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
     margin-top: 0;
 }
 
 /* Chart Container Box */
 .monthly-chart-container {
-    height: 18rem; /* h-72 equivalent */
+    height: 18rem;
 }
