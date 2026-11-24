@@ -7,6 +7,7 @@ import connectDB from "./config/db.js"
 
 import authRoutes from './routes/authRoutes.js'
 import transactionRoutes from './routes/transactionRoutes.js'
+import lentRoutes from './routes/lentRoutes.js'
 
 import protect from './middleware/authMiddleware.js'
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes)
 app.use('/api/transactions', transactionRoutes)
+app.use('/api/lents', lentRoutes)
 
 app.get('/', (req, res) => {
     res.json({
