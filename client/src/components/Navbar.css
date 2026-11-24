@@ -77,11 +77,6 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* .nav-item:hover {
-    background-color: #374151;
-    color: #ffffff;
-} */
-
 .nav-item.active {
     background-color: #A53D36;
     color: #ffffff; /* emerald-400 */
@@ -111,9 +106,10 @@ body {
 .navbar.show>#close-nav {
     position: absolute;
     top: 10px;
-    left: 160px;
+    left: 190px;
     border: none;
     background-color: #fff;
+    color: #6b7280;
 }
 
 .navbar.hide>#close-nav {
@@ -122,10 +118,12 @@ body {
     left: 100%;
     border: none;
     background-color: #fff;
+    color: #6b7280;
 }
 
 #close-nav:hover {
     cursor: pointer;
+    color: #A53D36;
 }
 
 #logout-btn {

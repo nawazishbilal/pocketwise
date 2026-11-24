@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { Wallet, LayoutDashboard, Receipt, Target, Settings, LogOut } from 'lucide-react';
+import { Wallet, LayoutDashboard, Receipt, Target, Settings, LogOut, X } from 'lucide-react';
 
 import './Navbar.css';
 
@@ -16,7 +16,7 @@ export default function Navbar() {
     const links = [
         { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
         { name: 'Transactions', path: '/transactions', icon: Receipt },
-        { name: 'Budgets', path: '/budgets', icon: Wallet },
+        { name: 'Lendings', path: '/lendings', icon: Wallet },
         { name: 'Goals', path: '/goals', icon: Target },
         { name: 'Settings', path: '/settings', icon: Settings }
     ];
@@ -34,7 +34,13 @@ export default function Navbar() {
                     <p id="brand-tagline">YOUR FINANCE TRACKER</p>
                 </div>
 
-                {/* <button id="close-nav" onClick={() => setIsVisible(!isVisible)} label={isVisible ? "Hide menu" : "Show menu"}>{isVisible ? '✕ Close' : '☰ Menu'}</button> */}
+                {/* <button id="close-nav" onClick={() => setIsVisible(!isVisible)} label={isVisible ? "Hide menu" : "Show menu"}>
+                    {isVisible ? 
+                    <div className='close-btn'>
+                        <X />
+                    </div>
+                     : '☰ Menu'}
+                </button> */}
 
                 <p id="nav-heading">WORKSPACE</p>
 
@@ -53,9 +59,9 @@ export default function Navbar() {
 
                 <div className='account-box'>
                     <div className="nav-account">
-                        <div className="user-icon">
+                        {/* <div className="user-icon">
                             <p>NB</p>
-                        </div>
+                        </div> */}
                         <div className="user-details">
                             <p id="user-name">Nawazish Bilal</p>
                             <p id="user-email">nawazish@example.com</p>

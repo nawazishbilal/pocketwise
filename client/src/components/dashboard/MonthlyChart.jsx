@@ -41,14 +41,14 @@ const MonthlyChart = ({ data }) => {
                         <Legend />
 
                         <Bar
-                            dataKey="income"
+                            dataKey="Income"
                             name="Income"
                             fill="#10B981"
                             radius={[4, 4, 0, 0]}
                         />
 
                         <Bar
-                            dataKey="expense"
+                            dataKey="Expense"
                             name="Expense"
                             fill="#F87171"
                             radius={[4, 4, 0, 0]}

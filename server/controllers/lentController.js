@@ -113,10 +113,31 @@ export const updateLent = async (req, res) => {
 
 export const getLent = async (req, res) => {
     try {
-        const { startDate, endDate } = req.query;
+        const { startDate, endDate, search, page = 1, limit = 10 } = req.query;
+
+        const currentPage = Math.max(1, Number(page));
+        const pageSize = Math.min(50, Math.max(1, Number(limit)));
+
+        if (!Number.isInteger(currentPage) || !Number.isInteger(pageSize)) {
+            return res.status(400).json({
+                message: 'Invalid pagination parameters'
+            });
+        }
 
         const filter = {
             userID: req.user._id
+        }
+
+        if (search && search.trim()) {
+            const escapedSearch = search.trim().replace(
+                /[.*+?^${}()|[\]\\]/g,
+                '\\$&'
+            );
+
+            filter.description = {
+                $regex: escapedSearch,
+                $options: 'i'
+            };
         }
 
         if (startDate || endDate) {
@@ -159,10 +180,18 @@ export const getLent = async (req, res) => {
             }
         }
 
+        const totalLents = await Lent.countDocuments(filter);
+
         const lents = await Lent.find(filter)
-            .sort({ date: -1, _id: - 1 });
+            .sort({ date: -1, _id: - 1 })
+            .skip((currentPage - 1) * pageSize)
+            .limit(pageSize);
 
         res.status(200).json({
+            count: lents.length,
+            totalLents,
+            currentPage,
+            totalPages: Math.ceil(totalLents / pageSize),
             lents
         })
     } catch (error) {

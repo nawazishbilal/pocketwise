@@ -30,15 +30,15 @@ export const deleteBudget = (id) =>
     api.delete(`/budgets/${id}`);
 
 export const getLendings = () =>
-    api.get('/lendings');
+    api.get('/lents');
 
 export const createLending = (lendingData) =>
-    api.post('/lendings', lendingData);
+    api.post('/lents', lendingData);
 
 export const updateLending = (id, lendingData) =>
-    api.put(`/lendings/${id}`, lendingData);
+    api.put(`/lents/${id}`, lendingData);
 
 export const deleteLending = (id) =>
-    api.delete(`/lendings/${id}`);
+    api.delete(`/lents/${id}`);
 
 export default api;

@@ -76,8 +76,8 @@ export default function Dashboard() {
                 month: date.toLocaleDateString('en-IN', {
                     month: 'short'
                 }),
-                income: 0,
-                expense: 0
+                Income: 0,
+                Expense: 0
             };
         });
 

@@ -1,409 +1,257 @@
-import { useEffect, useMemo, useState, useCallback } from 'react';
-import { Plus, CheckCircle2, RotateCcw, Pencil, Trash2 } from 'lucide-react';
+import { useCallback, useEffect, useState } from "react";
+import { Plus, Search, RefreshCw } from 'lucide-react';
 
-import api, {
-    getLendings,
-    createLending,
-    updateLending,
-    deleteLending
-} from '../services/api';
-
+import api from '../services/api';
 import DashboardLayout from '../layouts/DashboardLayout';
-import LendingModal from '../components/LendingModal';
-import LendingsList from '../components/LendingsList';
 
-import './Lendings.css';
+import LendingsList from "../components/LendingsList";
+import LendingModal from "../components/LendingModal";
+
+import './Lendings.css'
 
 const Lendings = () => {
     const [lendings, setLendings] = useState([]);
-    const [filterType, setFilterType] = useState('all');
-    const [filterStatus, setFilterStatus] = useState('all');
+
+    const [search, setSearch] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    const [page, setPage] = useState(1);
+    const [pagination, setPagination] = useState({
+        totalLendings: 0,
+        totalPages: 0
+    });
 
     const [loading, setLoading] = useState(true);
-    const [saving, setSaving] = useState(false);
     const [error, setError] = useState('');
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [editingLending, setEditingLending] = useState(null);
 
-    const fetchLendings = async () => {
+    const fetchLendings = useCallback(async () => {
+        setLoading(true);
+        setError('');
+
         try {
-            setLoading(true);
-            setError('');
+            const response = await api.get('/lents', {
+                params: {
+                    search, startDate, endDate, page, limit: 10
+                }
+            })
 
-            const response = typeof getLendings === 'function'
-                ? await getLendings()
-                : await api.get('/lendings');
+            setLendings(response.data.lents);
 
-            const data = response.data?.lendings ?? response.data ?? [];
-            setLendings(Array.isArray(data) ? data : []);
-        } catch (err) {
+            setPagination({
+                totalLendings: response.data.totalLents,
+                totalPages: response.data.totalPages
+            })
+        } catch (error) {
             setError(
-                err.response?.data?.message ||
-                'Unable to fetch lending records.'
+                error.response?.data?.message ||
+                'Unable to fetch lending records'
             );
         } finally {
             setLoading(false);
         }
-    };
+    }, [search, startDate, endDate, page]);
 
     useEffect(() => {
-        fetchLendings;
-    }, []);
+        const timer = setTimeout(() => {
+            fetchLendings();
+        }, 300);
 
-    const summary = useMemo(() => {
-        const pendingLent = lendings
-            .filter((item) => item.type === 'lent' && item.status !== 'settled')
-            .reduce((sum, item) => sum + Number(item.amount || 0), 0);
+        return () => clearTimeout(timer);
+    }, [fetchLendings]);
 
-        const pendingBorrowed = lendings
-            .filter((item) => item.type === 'borrowed' && item.status !== 'settled')
-            .reduce((sum, item) => sum + Number(item.amount || 0), 0);
-
-        const settledTotal = lendings
-            .filter((item) => item.status === 'settled')
-            .reduce((sum, item) => sum + Number(item.amount || 0), 0);
-
-        return {
-            pendingLent,
-            pendingBorrowed,
-            settledTotal
-        };
-    }, [lendings]);
-
-    const filteredLendings = useMemo(() => {
-        return lendings.filter((item) => {
-            const matchesType = filterType === 'all' || item.type === filterType;
-            const currentStatus = item.status || 'pending';
-            const matchesStatus = filterStatus === 'all' || currentStatus === filterStatus;
-            return matchesType && matchesStatus;
-        });
-    }, [lendings, filterType, filterStatus]);
-
-    const formatCurrency = (amount) =>
-        new Intl.NumberFormat('en-IN', {
-            style: 'currency',
-            currency: 'INR',
-            maximumFractionDigits: 0
-        }).format(Number(amount || 0));
-
-    const formatDate = (dateValue) => {
-        if (!dateValue) return 'No due date';
-        const parsed = new Date(dateValue);
-        if (Number.isNaN(parsed.getTime())) return 'No due date';
-        return parsed.toLocaleDateString('en-IN', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        });
+    const handleFilterChange = (setter) => (value) => {
+        setter(value);
+        setPage(1);
     };
 
-    const openAddModal = () => {
+    const handleAdd = async (data) => {
+        await api.post('/lents', data);
+
+        setShowModal(false);
+
+        if (page !== 1) {
+            setPage(1);
+        } else {
+            await fetchLendings();
+        }
+    };
+
+    const handleUpdate = async (data) => {
+        await api.put(
+            `/lents/${editingLending._id}`,
+            data
+        );
+
         setEditingLending(null);
-        setIsModalOpen(true);
+        await fetchLendings();
     };
 
-    const openEditModal = (lending) => {
-        setEditingLending(lending);
-        setIsModalOpen(true);
+    const handleDelete = async (id) => {
+        if (!window.confirm('Delete this record?')) return;
+
+        try {
+            await api.delete(`/lents/${id}`);
+
+            // If the last item on a page was deleted,
+            // move to the previous page if necessary.
+            if (lendings.length === 1 && page > 1) {
+                setPage(page - 1);
+            } else {
+                await fetchLendings();
+            }
+        } catch (err) {
+            setError(
+                err.response?.data?.message ||
+                'Failed to delete record'
+            );
+        }
+    };
+
+    const resetFilters = () => {
+        setSearch('');
+        setStartDate('');
+        setEndDate('');
+        setPage(1);
     };
 
     const closeModal = () => {
-        setIsModalOpen(false);
+        setShowModal(false);
         setEditingLending(null);
-    };
-
-    const handleSaveLending = async (lendingData) => {
-        try {
-            setSaving(true);
-            setError('');
-
-            if (editingLending) {
-                if (typeof updateLending === 'function') {
-                    await updateLending(editingLending._id, lendingData);
-                } else {
-                    await api.put(`/lendings/${editingLending._id}`, lendingData);
-                }
-            } else {
-                if (typeof createLending === 'function') {
-                    await createLending(lendingData);
-                } else {
-                    await api.post('/lendings', lendingData);
-                }
-            }
-
-            closeModal();
-            await fetchLendings();
-        } catch (err) {
-            setError(
-                err.response?.data?.message ||
-                'Failed to save lending record.'
-            );
-        } finally {
-            setSaving(false);
-        }
-    };
-
-    const handleToggleSettle = async (record) => {
-        const nextStatus = record.status === 'settled' ? 'pending' : 'settled';
-
-        try {
-            setError('');
-            if (typeof updateLending === 'function') {
-                await updateLending(record._id, { status: nextStatus });
-            } else {
-                await api.patch(`/lendings/${record._id}`, { status: nextStatus });
-            }
-            await fetchLendings();
-        } catch (err) {
-            setError(
-                err.response?.data?.message ||
-                'Failed to update settlement status.'
-            );
-        }
-    };
-
-    const handleDeleteLending = async (record) => {
-        const confirmed = window.confirm(
-            `Delete the record for ${record.personName}?`
-        );
-
-        if (!confirmed) return;
-
-        try {
-            setError('');
-            if (typeof deleteLending === 'function') {
-                await deleteLending(record._id);
-            } else {
-                await api.delete(`/lendings/${record._id}`);
-            }
-            await fetchLendings();
-        } catch (err) {
-            setError(
-                err.response?.data?.message ||
-                'Failed to delete lending record.'
-            );
-        }
     };
 
     return (
         <DashboardLayout>
-            <div className="lendings-page">
 
-                {/* Page Header */}
-                <div className="lendings-header">
-                    <div>
-                        <h1 className="lendings-title">Lendings</h1>
-                        <p className="lendings-subtitle">
-                            Track money you lent out or borrowed and mark settlements.
-                        </p>
+            <div className="header">
+                <div>
+                    <h1 className="header-title">Lending Records</h1>
+                    <p className="header-subtitle">Manage your lending records.</p>
+                </div>
+
+                <button onClick={() => setShowModal(true)} className="add-btn"><Plus size={20} />Add Record</button>
+            </div>
+
+            <div className="filters-card">
+                <div className="filters-grid">
+
+                    <div className="search wrapper">
+                        <Search size={18} className="search-icon" />
+                        <input type="text" placeholder="Search records" value={search} onChange={(e) => {
+                            handleFilterChange(setSearch)(e.target.value)
+                        }} className="search-input" />
                     </div>
 
                     <button
                         type="button"
-                        onClick={openAddModal}
-                        className="lendings-add-btn"
+                        onClick={resetFilters}
+                        className="reset-btn"
                     >
-                        <Plus size={19} />
-                        Add Record
+                        <RefreshCw size={17} />
+                        Reset Filters
+                    </button>
+
+                    <div className="date-group">
+                        <label className="date-label">
+                            From
+                        </label>
+
+                        <input
+                            type="date"
+                            value={startDate}
+                            onChange={(e) =>
+                                handleFilterChange(setStartDate)(e.target.value)
+                            }
+                            className="date-input"
+                        />
+                    </div>
+
+                    <div className="date-group">
+                        <label className="date-label">
+                            To
+                        </label>
+
+                        <input
+                            type="date"
+                            value={endDate}
+                            min={startDate || undefined}
+                            onChange={(e) =>
+                                handleFilterChange(setEndDate)(e.target.value)
+                            }
+                            className="date-input"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="results-bar">
+                <p className="count">
+                    {pagination.totalLendings} transactions found
+                </p>
+            </div>
+
+            {error && (
+                <p className="error">{error}</p>
+            )}
+
+            {loading ? (
+                <div className="loading">
+                    Loading records...
+                </div>
+            ) : (
+                <LendingsList
+                    lendings={lendings}
+                    onEdit={setEditingLending}
+                    onDelete={handleDelete}
+                />
+            )}
+
+            {!loading && pagination.totalPages > 1 && (
+                <div className="pagination">
+                    <button
+                        type="button"
+                        disabled={page === 1}
+                        onClick={() => setPage((prev) => prev - 1)}
+                        className="pagination-btn"
+                    >
+                        Previous
+                    </button>
+
+                    <span className="pagination-info">
+                        Page {page} of {pagination.totalPages}
+                    </span>
+
+                    <button
+                        type="button"
+                        disabled={page >= pagination.totalPages}
+                        onClick={() => setPage((prev) => prev + 1)}
+                        className="pagination-btn"
+                    >
+                        Next
                     </button>
                 </div>
+            )}
 
-                {/* Error Alert */}
-                {error && (
-                    <div className="lendings-error">
-                        {error}
-                    </div>
-                )}
+            {showModal && (
+                <LendingModal
+                    onClose={closeModal}
+                    onSubmit={handleAdd}
+                />
+            )}
 
-                {/* Summary Cards */}
-                <div className="lendings-summary-grid">
-                    <div className="lending-summary-card">
-                        <p className="lending-summary-label">You Will Receive (Lent)</p>
-                        <h2 className="lending-summary-value lent-value">
-                            {formatCurrency(summary.pendingLent)}
-                        </h2>
-                        <span className="lending-summary-hint">Pending repayments</span>
-                    </div>
+            {editingLending && (
+                <LendingModal
+                    initialData={editingLending}
+                    onClose={closeModal}
+                    onSubmit={handleUpdate}
+                />
+            )}
 
-                    <div className="lending-summary-card">
-                        <p className="lending-summary-label">You Owe (Borrowed)</p>
-                        <h2 className="lending-summary-value borrowed-value">
-                            {formatCurrency(summary.pendingBorrowed)}
-                        </h2>
-                        <span className="lending-summary-hint">Pending dues</span>
-                    </div>
-
-                    <div className="lending-summary-card">
-                        <p className="lending-summary-label">Settled Total</p>
-                        <h2 className="lending-summary-value settled-value">
-                            {formatCurrency(summary.settledTotal)}
-                        </h2>
-                        <span className="lending-summary-hint">Cleared records</span>
-                    </div>
-                </div>
-
-                {/* Filters Bar */}
-                <div className="lendings-filters-bar">
-                    <div className="lendings-filter-group">
-                        <button
-                            type="button"
-                            onClick={() => setFilterType('all')}
-                            className={`filter-pill ${filterType === 'all' ? 'active' : ''}`}
-                        >
-                            All Types
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setFilterType('lent')}
-                            className={`filter-pill ${filterType === 'lent' ? 'active' : ''}`}
-                        >
-                            Lent
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setFilterType('borrowed')}
-                            className={`filter-pill ${filterType === 'borrowed' ? 'active' : ''}`}
-                        >
-                            Borrowed
-                        </button>
-                    </div>
-
-                    <div className="lendings-filter-group">
-                        <button
-                            type="button"
-                            onClick={() => setFilterStatus('all')}
-                            className={`filter-pill ${filterStatus === 'all' ? 'active' : ''}`}
-                        >
-                            All Status
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setFilterStatus('pending')}
-                            className={`filter-pill ${filterStatus === 'pending' ? 'active' : ''}`}
-                        >
-                            Pending
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setFilterStatus('settled')}
-                            className={`filter-pill ${filterStatus === 'settled' ? 'active' : ''}`}
-                        >
-                            Settled
-                        </button>
-                    </div>
-                </div>
-
-                {/* Lending Records List */}
-                {loading ? (
-                    <div className="lendings-empty-card">
-                        <p className="lendings-empty-text">Loading lending records...</p>
-                    </div>
-                ) : filteredLendings.length === 0 ? (
-                    <div className="lendings-empty-card">
-                        <p className="lendings-empty-text">
-                            No lending records match the current filter.
-                        </p>
-                    </div>
-                ) : (
-                    <div className="lendings-list-grid">
-                        {filteredLendings.map((record) => {
-                            const isLent = record.type === 'lent';
-                            const isSettled = record.status === 'settled';
-
-                            return (
-                                <div
-                                    key={record._id}
-                                    className={`lending-record-card ${isSettled ? 'is-settled' : ''}`}
-                                >
-                                    <div className="lending-record-top">
-                                        <div>
-                                            <h3 className="lending-person-name">
-                                                {record.personName}
-                                            </h3>
-                                            <div className="lending-badges">
-                                                <span className={`lending-type-badge ${isLent ? 'type-lent' : 'type-borrowed'}`}>
-                                                    {isLent ? 'Lent' : 'Borrowed'}
-                                                </span>
-                                                <span className={`lending-status-badge ${isSettled ? 'status-settled' : 'status-pending'}`}>
-                                                    {isSettled ? 'Settled' : 'Pending'}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div className={`lending-record-amount ${isLent ? 'lent-value' : 'borrowed-value'}`}>
-                                            {formatCurrency(record.amount)}
-                                        </div>
-                                    </div>
-
-                                    {record.notes && (
-                                        <p className="lending-notes">{record.notes}</p>
-                                    )}
-
-                                    <div className="lending-record-footer">
-                                        <span className="lending-due-date">
-                                            Due: {formatDate(record.dueDate)}
-                                        </span>
-
-                                        <div className="lending-record-actions">
-                                            <button
-                                                type="button"
-                                                onClick={() => handleToggleSettle(record)}
-                                                className="lending-action-btn settle-btn"
-                                                title={isSettled ? 'Mark as Pending' : 'Mark as Settled'}
-                                            >
-                                                {isSettled ? (
-                                                    <>
-                                                        <RotateCcw size={15} />
-                                                        Reopen
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <CheckCircle2 size={15} />
-                                                        Settle
-                                                    </>
-                                                )}
-                                            </button>
-
-                                            <button
-                                                type="button"
-                                                onClick={() => openEditModal(record)}
-                                                className="lending-icon-action edit"
-                                                title="Edit record"
-                                            >
-                                                <Pencil size={16} />
-                                            </button>
-
-                                            <button
-                                                type="button"
-                                                onClick={() => handleDeleteLending(record)}
-                                                className="lending-icon-action delete"
-                                                title="Delete record"
-                                            >
-                                                <Trash2 size={16} />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
-
-                {/* Add / Edit Modal */}
-                {isModalOpen && (
-                    <LendingModal
-                        key={editingLending?._id || 'new-lending'}
-                        onClose={closeModal}
-                        onSubmit={handleSaveLending}
-                        initialData={editingLending}
-                        loading={saving}
-                    />
-                )}
-
-            </div>
         </DashboardLayout>
-    );
-};
+    )
+}
 
 export default Lendings;
