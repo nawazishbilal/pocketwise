@@ -46,11 +46,11 @@ export default function Dashboard() {
     // Calculate financial summaries
     const summary = useMemo(() => {
         const income = transactions
-            .filter(t => t.type === 'income')
+            .filter(t => t.type === 'Income')
             .reduce((sum, t) => sum + t.amount, 0);
 
         const expense = transactions
-            .filter(t => t.type === 'expense')
+            .filter(t => t.type === 'Expense')
             .reduce((sum, t) => sum + t.amount, 0);
 
         return {
@@ -107,7 +107,7 @@ export default function Dashboard() {
                 date.getFullYear() === now.getFullYear();
 
             if (
-                transaction.type === 'expense' &&
+                transaction.type === 'Expense' &&
                 isCurrentMonth
             ) {
                 categoryTotals[transaction.category] =
@@ -172,7 +172,7 @@ export default function Dashboard() {
     if (loading) {
         return (
             <div className="dashboard-loading">
-                Loading SmartSpend...
+                Loading...
             </div>
         );
     }
@@ -247,7 +247,7 @@ export default function Dashboard() {
 
             {/* Transactions */}
             <TransactionList
-                transactions={transactions.slice(0, 10)}
+                transactions={transactions.slice(0, 5)}
                 onEdit={openEditModal}
                 onDelete={handleDeleteTransaction}
             />

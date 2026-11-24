@@ -29,4 +29,16 @@ export const updateBudget = (id, budgetData) =>
 export const deleteBudget = (id) =>
     api.delete(`/budgets/${id}`);
 
+export const getLendings = () =>
+    api.get('/lendings');
+
+export const createLending = (lendingData) =>
+    api.post('/lendings', lendingData);
+
+export const updateLending = (id, lendingData) =>
+    api.put(`/lendings/${id}`, lendingData);
+
+export const deleteLending = (id) =>
+    api.delete(`/lendings/${id}`);
+
 export default api;

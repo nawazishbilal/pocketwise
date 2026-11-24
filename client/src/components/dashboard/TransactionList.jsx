@@ -47,7 +47,7 @@ const TransactionList = ({
 
                         <tbody>
                             {transactions.map((transaction) => {
-                                const isIncome = transaction.type === 'income';
+                                const isIncome = transaction.type === 'Income';
 
                                 return (
                                     <tr key={transaction._id} className="transaction-row">

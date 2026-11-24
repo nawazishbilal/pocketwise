@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
-import Budgets from './pages/Budgets';
+import Lendings from './pages/Lendings';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -21,7 +21,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
-        <Route path="/budgets" element={<Budgets />} />
+        <Route path="/budgets" element={<Lendings />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

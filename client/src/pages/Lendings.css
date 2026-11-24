@@ -1,0 +1,318 @@
+/* Page Container */
+.lendings-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Header */
+.lendings-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lendings-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.lendings-subtitle {
+    color: #9ca3af;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    font-size: 0.925rem;
+}
+
+.lendings-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #A53D36;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.lendings-add-btn:hover {
+    background-color: #E5B5AF;
+    color: #A53D36;
+}
+
+/* Error Message */
+.lendings-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #f87171;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Summary Cards */
+.lendings-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.lending-summary-card {
+    background-color: #fff;
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+}
+
+.lending-summary-label {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.lending-summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.lending-summary-hint {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.lent-value {
+    color: #A53D36;
+}
+
+.borrowed-value {
+    color: green;
+}
+
+.settled-value {
+    color: #60a5fa;
+}
+
+/* Filter Pills */
+.lendings-filters-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.lendings-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-pill {
+    background-color: #fff;
+    border: 1px solid #3741512d;
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.825rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-pill:hover {
+    color: #A53D36;
+    border-color: #A53D36;
+}
+
+.filter-pill.active {
+    background-color: #A53D36;
+    border: none;
+    color: #fff;
+}
+
+/* Empty & Loading */
+.lendings-empty-card {
+    background-color: #fff;
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+.lendings-empty-text {
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* Lending Records Grid */
+.lendings-list-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.lending-record-card {
+    background-color: #fff;
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.lending-record-card.is-settled {
+    opacity: 0.78;
+}
+
+.lending-record-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.lending-person-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.45rem;
+}
+
+.lending-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.lending-type-badge,
+.lending-status-badge {
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+}
+
+.type-lent {
+    background-color: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+}
+
+.type-borrowed {
+    background-color: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+.status-pending {
+    background-color: rgba(245, 158, 11, 0.14);
+    color: #fbbf24;
+}
+
+.status-settled {
+    background-color: rgba(59, 130, 246, 0.14);
+    color: #60a5fa;
+}
+
+.lending-record-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.lending-notes {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #d1d5db;
+}
+
+/* Footer & Actions */
+.lending-record-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #374151;
+}
+
+.lending-due-date {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.lending-record-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lending-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 0.45rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.lending-action-btn:hover {
+    background-color: rgba(16, 185, 129, 0.22);
+}
+
+.lending-icon-action {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    padding: 0.35rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.lending-icon-action.edit:hover {
+    color: #60a5fa;
+    background-color: rgba(59, 130, 246, 0.12);
+}
+
+.lending-icon-action.delete:hover {
+    color: #f87171;
+    background-color: rgba(239, 68, 68, 0.12);
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 640px) {
+    .lendings-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .lendings-summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lendings-filters-bar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .lendings-list-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

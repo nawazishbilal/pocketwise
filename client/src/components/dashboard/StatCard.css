@@ -47,9 +47,8 @@
 
 /* Amount Heading */
 .stat-amount {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 700; /* font-bold */
-    margin-top: 1.25rem; /* mt-5 */
+    font-size: 2rem;
+    font-weight: 700;
     margin-bottom: 0;
 }
 

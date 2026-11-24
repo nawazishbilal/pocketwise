@@ -10,9 +10,9 @@ const AddTransactionModal = ({
     const [formData, setFormData] = useState({
         description: '',
         amount: '',
-        type: 'expense',
-        category: 'Food',
-        date: new Date().toLocaleDateString('en-CA')
+        type: 'Expense',
+        category: 'Needs',
+        date: new Date().toLocaleDateString('en-IN')
     });
 
     const [error, setError] = useState('');
@@ -25,7 +25,7 @@ const AddTransactionModal = ({
                 amount: initialData.amount,
                 type: initialData.type,
                 category: initialData.category,
-                date: new Date(initialData.date).toLocaleDateString('en-CA')
+                date: new Date(initialData.date).toLocaleDateString('en-IN')
             });
         }
     }, [initialData]);
@@ -89,24 +89,23 @@ const AddTransactionModal = ({
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">
-                            Amount (₹)
-                        </label>
-                        <input
-                            name="amount"
-                            type="number"
-                            min="0.01"
-                            step="0.01"
-                            value={formData.amount}
-                            onChange={handleChange}
-                            required
-                            placeholder="Enter amount"
-                            className="form-input"
-                        />
-                    </div>
-
                     <div className="form-grid-2">
+                        <div className="form-group">
+                            <label className="form-label">
+                                Amount (₹)
+                            </label>
+                            <input
+                                name="amount"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                value={formData.amount}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter amount"
+                                className="form-input"
+                            />
+                        </div>
                         <div className="form-group">
                             <label className="form-label">
                                 Type
@@ -117,11 +116,13 @@ const AddTransactionModal = ({
                                 onChange={handleChange}
                                 className="form-input"
                             >
-                                <option value="expense">Expense</option>
-                                <option value="income">Income</option>
+                                <option value="Expense">Expense</option>
+                                <option value="Income">Income</option>
                             </select>
                         </div>
+                    </div>
 
+                    <div className='form-grid-2'>
                         <div className="form-group">
                             <label className="form-label">
                                 Category
@@ -132,19 +133,35 @@ const AddTransactionModal = ({
                                 onChange={handleChange}
                                 className="form-input"
                             >
-                                <option>Food</option>
-                                <option>Shopping</option>
-                                <option>Transport</option>
-                                <option>Entertainment</option>
-                                <option>Healthcare</option>
-                                <option>Education</option>
-                                <option>Bills</option>
-                                <option>Salary</option>
-                                <option>Freelance</option>
-                                <option>Investment</option>
-                                <option>Other</option>
+                                <option value={"Needs"}>Needs</option>
+                                <option value={"Wants"}>Wants</option>
+                                <option value={"Misc"}>Misc</option>
+                                <option value={"Other"}>Other</option>
                             </select>
                         </div>
+                        <div className="form-group">
+                            <label className="form-label">
+                                Other Category
+                            </label>
+                            <input
+                                name="category2"
+                                value={formData.category2}
+                                onChange={handleChange}
+                                className="form-input"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">
+                            Remarks
+                        </label>
+                        <input
+                            name="remarks"
+                            value={formData.remarks}
+                            onChange={handleChange}
+                            className="form-input"
+                        />
                     </div>
 
                     <div className="form-group">
@@ -185,8 +202,8 @@ const AddTransactionModal = ({
 
                 </form>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
