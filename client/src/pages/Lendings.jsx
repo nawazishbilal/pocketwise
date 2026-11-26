@@ -136,23 +136,18 @@ const Lendings = () => {
             </div>
 
             <div className="filters-card">
-                <div className="filters-grid">
-
-                    <div className="search wrapper">
+            <div className="search wrapper">
                         <Search size={18} className="search-icon" />
                         <input type="text" placeholder="Search records" value={search} onChange={(e) => {
                             handleFilterChange(setSearch)(e.target.value)
                         }} className="search-input" />
                     </div>
+                
+                <div className="filters-grid">
 
-                    <button
-                        type="button"
-                        onClick={resetFilters}
-                        className="reset-btn"
-                    >
-                        <RefreshCw size={17} />
-                        Reset Filters
-                    </button>
+                    
+
+                    
 
                     <div className="date-group">
                         <label className="date-label">
@@ -184,6 +179,15 @@ const Lendings = () => {
                             className="date-input"
                         />
                     </div>
+
+                    <button
+                        type="button"
+                        onClick={resetFilters}
+                        className="reset-btn"
+                    >
+                        <RefreshCw size={17} />
+                        Reset Filters
+                    </button>
                 </div>
             </div>
 

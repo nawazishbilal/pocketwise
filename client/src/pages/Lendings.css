@@ -51,31 +51,33 @@
 
 .filters-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     align-items: end;
+    margin-top: 10px;
 }
 
 /* Search Input with Icon */
 .search-wrapper {
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: row;
 }
 
 .search-icon {
     position: absolute;
-    left: 313px;
-    top: 165px;
-    transform: translateY(-50%);
+    left: 315px;
+    top: 160px;
     color: #6b7280;
     pointer-events: none;
 }
 
 .search-input {
     width: 100%;
-    background-color: #fff; /* gray-800 */
-    border: 1px solid #374151; /* gray-700 */
+    background-color: #fff;
+    border: 1px solid #374151;
     border-radius: 0.5rem;
-    padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* py-3 pl-10 pr-3 */
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.2s ease;

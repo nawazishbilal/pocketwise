@@ -15,7 +15,7 @@
 }
 
 .stat-title {
-    color: #9CA3AF; /* text-gray-400 */
+    color: #727272; /* text-gray-400 */
     font-size: 0.875rem; /* text-sm */
     margin: 0;
 }
@@ -54,7 +54,7 @@
 
 /* Subtitle */
 .stat-subtitle {
-    color: #6B7280; /* text-gray-500 */
+    color: #727272; /* text-gray-500 */
     font-size: 0.75rem; /* text-xs */
     margin-top: 0.5rem; /* mt-2 */
     margin-bottom: 0;

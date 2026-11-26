@@ -8,6 +8,8 @@ const LendingsList = ({ lendings, onEdit, onDelete }) => {
         });
     }
 
+    console.log(lendings)
+
     return (
         <div className="lendings-card">
 
@@ -35,6 +37,7 @@ const LendingsList = ({ lendings, onEdit, onDelete }) => {
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Actions</th>
+                                <th>Notes</th>
                             </tr>
                         </thead>
 
@@ -74,6 +77,11 @@ const LendingsList = ({ lendings, onEdit, onDelete }) => {
                                                     <Trash2 size={17} />
                                                 </button>
                                             </div>
+                                        </td>
+
+                                        <td className="cell amount">
+                                            
+                                            <input type="checkbox"  value={lending.repaid} />
                                         </td>
                                     </tr>
                                 )

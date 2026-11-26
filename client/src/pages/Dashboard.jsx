@@ -12,6 +12,7 @@ import MonthlyChart from '../components/dashboard/MonthlyChart';
 import CategoryChart from '../components/dashboard/CategoryChart';
 import TransactionList from '../components/dashboard/TransactionList';
 import AddTransactionModal from '../components/dashboard/AddTransactionModal';
+import TransactionDetailsModal from '../components/dashboard/TransactionDetailsModal';
 
 export default function Dashboard() {
     const { user } = useAuth();
@@ -19,6 +20,9 @@ export default function Dashboard() {
     const [transactions, setTransactions] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [editingTransaction, setEditingTransaction] = useState(null);
+
+    const [selectedTransaction, setSelectedTransaction] = useState(null);
+    const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -169,6 +173,11 @@ export default function Dashboard() {
         setEditingTransaction(null);
     };
 
+    const openInfoModal = (transaction) => {
+        setSelectedTransaction(transaction);
+        setIsDetailsOpen(true);
+    }
+
     if (loading) {
         return (
             <div className="dashboard-loading">
@@ -248,6 +257,7 @@ export default function Dashboard() {
             {/* Transactions */}
             <TransactionList
                 transactions={transactions.slice(0, 5)}
+                isDetailsOpen={openInfoModal}
                 onEdit={openEditModal}
                 onDelete={handleDeleteTransaction}
             />
@@ -266,6 +276,17 @@ export default function Dashboard() {
                     initialData={editingTransaction}
                     onClose={closeModal}
                     onSubmit={handleUpdateTransaction}
+                />
+            )}
+
+            {isDetailsOpen && (
+                <TransactionDetailsModal
+                    isOpen={isDetailsOpen}
+                    onClose={() => {
+                        setIsDetailsOpen(false);
+                        setSelectedTransaction(null);
+                    }}
+                    transaction={selectedTransaction}
                 />
             )}
 

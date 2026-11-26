@@ -1,8 +1,9 @@
-import { Pencil, Trash2, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
+import { Pencil, Trash2, ArrowDownLeft, ArrowUpRight, Info } from 'lucide-react';
 import './TransactionList.css';
 
 const TransactionList = ({
     transactions,
+    isDetailsOpen,
     onEdit,
     onDelete
 }) => {
@@ -41,7 +42,7 @@ const TransactionList = ({
                                 <th>Category</th>
                                 <th>Date</th>
                                 <th>Amount</th>
-                                <th>Actions</th>
+                                <th id='action-hdg'>Actions</th>
                             </tr>
                         </thead>
 
@@ -82,6 +83,14 @@ const TransactionList = ({
 
                                         <td className="transaction-cell">
                                             <div className="transaction-actions">
+                                                <button
+                                                    onClick={() => isDetailsOpen(transaction)}
+                                                    className='action-btn info-btn'
+                                                    title='Info'
+                                                >
+                                                    <Info size={17} />
+                                                </button>
+                                                
                                                 <button
                                                     onClick={() => onEdit(transaction)}
                                                     className="action-btn edit-btn"

@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
 import Lendings from './pages/Lendings';
+import Goals from './pages/Goals'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/lendings" element={<Lendings />} />
+        <Route path='/goals' element={<Goals />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

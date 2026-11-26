@@ -18,7 +18,6 @@ export default function Navbar() {
         { name: 'Transactions', path: '/transactions', icon: Receipt },
         { name: 'Lendings', path: '/lendings', icon: Wallet },
         { name: 'Goals', path: '/goals', icon: Target },
-        { name: 'Settings', path: '/settings', icon: Settings }
     ];
 
     const handleLogout = () => {

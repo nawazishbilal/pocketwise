@@ -1,0 +1,186 @@
+/* Backdrop */
+.tx-details-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+}
+
+/* Modal Card */
+.tx-details-modal {
+    width: 100%;
+    max-width: 28rem; /* max-w-md */
+    background-color: #f5f5f5;
+    border: 1px solid #374151;
+    border-radius: 1rem; /* rounded-2xl */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* Header */
+.tx-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #374151;
+}
+
+.tx-details-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600;
+    color: #A53D36;
+    margin: 0;
+}
+
+.tx-details-close-btn {
+    background: transparent;
+    border: none;
+    color: #2b2b2b;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.tx-details-close-btn:hover {
+    color: #A53D36;
+}
+
+/* Hero Amount Section */
+.tx-details-hero {
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    display: flex;
+}
+
+.tx-details-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-details-badge {
+    width: 3.5rem; /* w-14 */
+    height: 3.5rem; /* h-14 */
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tx-details-sign {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tx-details-kind {
+    font-size: 0.875rem; /* text-sm */
+    color: #9ca3af;
+    margin: 0;
+}
+
+.tx-details-amount {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    margin: 0.5rem 0 0;
+}
+
+.tx-details-description {
+    color: #d1d5db;
+    margin: 0.5rem 0 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Income / Expense Tones */
+.tx-details-badge.tone-income {
+    background-color: rgba(16, 185, 129, 0.14);
+    color: #34d399;
+}
+
+.tx-details-badge.tone-expense {
+    background-color: rgba(239, 68, 68, 0.14);
+    color: #f87171;
+}
+
+.tx-details-amount.tone-income,
+.tx-detail-value.tone-income {
+    color: #34d399;
+}
+
+.tx-details-amount.tone-expense,
+.tx-detail-value.tone-expense {
+    color: #f87171;
+}
+
+/* Metadata Grid */
+.tx-details-body {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.tx-details-grid {
+    background-color: #111827;
+    border: 1px solid #374151;
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+    row-gap: 1.25rem;
+}
+
+.tx-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.tx-detail-label {
+    font-size: 0.875rem; /* text-sm */
+    color: #9ca3af;
+    margin: 0;
+}
+
+.tx-detail-value {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500;
+    color: #f9fafb;
+    margin: 0;
+}
+
+.tx-detail-capitalize {
+    text-transform: capitalize;
+}
+
+.tx-detail-id {
+    word-break: break-all;
+}
+
+/* Footer */
+.tx-details-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #374151;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tx-details-close-action {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    background-color: #374151;
+    color: #ffffff;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tx-details-close-action:hover {
+    background-color: #4b5563;
+}

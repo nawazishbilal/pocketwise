@@ -34,7 +34,7 @@ const CategoryChart = ({ data }) => {
                                 cx="50%"
                                 cy="45%"
                                 outerRadius={85}
-                                paddingAngle={3}
+                                paddingAngle={0}
                             >
                                 {data.map((entry, index) => (
                                     <Cell
