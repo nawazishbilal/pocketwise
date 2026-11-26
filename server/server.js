@@ -13,7 +13,15 @@ import protect from './middleware/authMiddleware.js'
 
 const app = express();
 
-app.use(cors())
+const allowedOrigins = [
+    'http://localhost:5173',
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes)
@@ -38,12 +46,19 @@ app.get('/api/auth/me', protect, (req, res) => {
 })
 
 const startServer = async () => {
-    await connectDB();
+    
     const PORT = process.env.PORT || 8000;
 
-    app.listen(PORT, () => {
-        console.log(`Server is Running on: ${PORT}`);
-    })
+    try {
+        await connectDB();
+
+        app.listen(PORT, '0.0.0.0', () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error('Server startup failed:', error);
+        process.exit(1);
+    }
 }
 
 startServer();
