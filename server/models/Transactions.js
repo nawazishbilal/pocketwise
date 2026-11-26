@@ -35,6 +35,7 @@ const transactionSchema = new mongoose.Schema(
         },
         remarks: {
             type: String,
+            trim: true,
             default: "NA"
         },
         date: {

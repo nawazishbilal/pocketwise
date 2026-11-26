@@ -9,12 +9,12 @@ const LendingModal = ({
 }) => {
     const isEditing = Boolean(initialData);
 
-    const [personName, setPersonName] = useState(initialData?.personName || '');
+    const [personName, setPersonName] = useState(initialData?.lentTo || '');
     const [amount, setAmount] = useState(initialData?.amount?.toString() || '');
     const [type, setType] = useState(initialData?.type || 'lent');
-    const [dueDate, setDueDate] = useState(
-        initialData?.dueDate
-            ? new Date(initialData.dueDate).toLocaleDateString('en-CA')
+    const [date, setDate] = useState(
+        initialData?.date
+            ? new Date(initialData.date).toLocaleDateString('en-CA')
             : ''
     );
     const [notes, setNotes] = useState(initialData?.notes || '');
@@ -27,10 +27,10 @@ const LendingModal = ({
         }
 
         onSubmit({
-            personName: personName.trim(),
+            lentTo: personName.trim(),
             amount: Number(amount),
             type,
-            dueDate: dueDate || null,
+            date: date || null,
             notes: notes.trim()
         });
     };
@@ -112,8 +112,8 @@ const LendingModal = ({
 
                         <input
                             type="date"
-                            value={dueDate}
-                            onChange={(e) => setDueDate(e.target.value)}
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
                             className="lending-form-input"
                         />
                     </div>

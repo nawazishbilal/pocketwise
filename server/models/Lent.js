@@ -17,6 +17,11 @@ const lentSchema = new mongoose.Schema(
             required: true,
             min: 0.01
         },
+        notes: {
+            type: String,
+            trim: true,
+            default: "NA"
+        },
         repaid: {
             type: Boolean,
             required: true,
