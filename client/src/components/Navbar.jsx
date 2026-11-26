@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { Wallet, LayoutDashboard, Receipt, Target, Settings, LogOut, X } from 'lucide-react';
+import { Wallet, LayoutDashboard, Receipt, Target, ChartLine, LogOut } from 'lucide-react';
 
 import './Navbar.css';
 
@@ -18,6 +18,7 @@ export default function Navbar() {
         { name: 'Transactions', path: '/transactions', icon: Receipt },
         { name: 'Lendings', path: '/lendings', icon: Wallet },
         { name: 'Goals', path: '/goals', icon: Target },
+        { name: 'Analytics', path: '/analytics', icon: ChartLine }
     ];
 
     const handleLogout = () => {

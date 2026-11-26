@@ -19,9 +19,8 @@ export default function Goals() {
                 </div>
 
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => {window.alert("Feature coming soon!")}}
                     className="add-btn"
-                    disabled={true}
                 >
                     <Plus size={20} />
                     Create Goal
